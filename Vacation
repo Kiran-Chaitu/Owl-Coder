@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define pii pair<int, int>
+#define vi vector<int>
+#define vl vector<ll>
+#define vii vector<pii>
+#define pb push_back
+#define mp make_pair
+#define all(x) (x).begin(), (x).end()
+#define sz(x) ((int)(x).size())
+#define F first
+#define S second
+
+const int MOD = 1e9 + 7;
+const int INF = INT_MAX;
+const ll lx = LLONG_MAX;
+const ll ln = LLONG_MIN;
+ll solver() {
+    ll n;
+    cin>>n;
+    vector<vector<ll>> v( n ,  vector<long long >(3));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<3;j++){
+            cin>>v[i][j];
+        }
+    }
+    for(int i=1;i<n;i++){
+        for(int j=0;j<3;j++){
+            v[i][j] = max(v[i][j]+v[i-1][(j+1)%3] , v[i][j] + v[i-1][(j+2)%3]);
+        }
+    }
+    ll maxi=ln;
+    for(int j=0;j<3;j++) maxi = max(v[n-1][j] , maxi);
+    return maxi;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    cout<<solver()<<endl; 
+    // int t;
+    // cin >> t;
+    // while (t--) {
+    // }
+
+    return 0;
+}
